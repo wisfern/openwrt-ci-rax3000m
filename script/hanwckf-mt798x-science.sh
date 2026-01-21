@@ -18,19 +18,19 @@ mv $GITHUB_WORKSPACE/patch/hanwckf/199-diy.sh package/base-files/files/etc/uci-d
 #mv $GITHUB_WORKSPACE/patch/hanwckf/xy/zerotier package/base-files/files/diy4me/zerotier
 
 
-if grep -q "openclash=y" "$GITHUB_WORKSPACE/$CONFIG_FILE"; then
-    echo "✅ 已选择 luci-app-openclash，添加 openclash core"
-    mkdir -p files/etc/openclash/core
-    # Download clash_meta
-    META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
-    wget -qO- $META_URL | tar xOz > files/etc/openclash/core/clash_meta
-    chmod +x files/etc/openclash/core/clash_meta
-    # Download GeoIP and GeoSite
-    # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat -O files/etc/openclash/GeoIP.dat
-    # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat -O files/etc/openclash/GeoSite.dat
-else
-    echo "⚪️ 未选择 luci-app-openclash"
-fi
+# if grep -q "openclash=y" "$GITHUB_WORKSPACE/$CONFIG_FILE"; then
+#     echo "✅ 已选择 luci-app-openclash，添加 openclash core"
+#     mkdir -p files/etc/openclash/core
+#     # Download clash_meta
+#     META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
+#     wget -qO- $META_URL | tar xOz > files/etc/openclash/core/clash_meta
+#     chmod +x files/etc/openclash/core/clash_meta
+#     # Download GeoIP and GeoSite
+#     # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat -O files/etc/openclash/GeoIP.dat
+#     # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat -O files/etc/openclash/GeoSite.dat
+# else
+#     echo "⚪️ 未选择 luci-app-openclash"
+# fi
 
 #完全删除luci版本
 sed -i "s/+ ' \/ ' : '') + (luciversion ||/:/g" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
@@ -54,8 +54,8 @@ sed -i 's/reg = <0x600000 0x6e00000>/reg = <0x600000 0x1ea00000>/' target/linux/
 rm -rf feeds/packages/lang/golang
 git clone --depth 1 https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
-rm -rf feeds/packages/net/{mosdns,v2ray-geodata}
-rm -rf feeds/luci/applications/{luci-app-openclash,luci-app-passwall,luci-app-ssr-plus,luci-app-mosdns}
+rm -rf feeds/packages/net/{mosdns,v2ray-geodata,open-app-filter}
+rm -rf feeds/luci/applications/{luci-app-openclash,luci-app-passwall,luci-app-ssr-plus,luci-app-mosdns,luci-app-appfilter}
 #find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 #find ./ | grep Makefile | grep mosdns | xargs rm -f
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
@@ -76,7 +76,7 @@ mv package/nas-packages/network/services/* package/nas-packages/
 rm -rf package/nas-packages/network
 
 
-rm -rf feeds/packages/net/{adguardhome,smartdns,tailscale,open-app-filter}
+rm -rf feeds/packages/net/{adguardhome,smartdns,tailscale}
 rm -rf feeds/luci/applications/{luci-app-alist,luci-app-smartdns}
 git clone --depth 1 https://github.com/kenzok8/small-package.git package/small-package
 mv package/small-package/luci-app-adguardhome package/luci-app-adguardhome
