@@ -61,13 +61,14 @@ rm -rf feeds/luci/applications/{luci-app-openclash,luci-app-passwall,luci-app-ss
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 git clone --depth 1 https://github.com/vernesong/OpenClash.git  package/openclash
-git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall.git package/luci-app-passwall
-git clone --depth 1 https://github.com/xiaorouji/openwrt-passwall2.git package/luci-app-passwall2
+git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall.git package/luci-app-passwall
+git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall2.git package/luci-app-passwall2
 
 git clone --depth 1 https://github.com/sbwml/luci-app-openlist2 package/openlist
 #git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/luci-app-lucky
 git clone --depth 1 https://github.com/destan19/OpenAppFilter.git package/oaf
 #git clone --depth 1 https://github.com/sirpdboy/luci-app-netspeedtest.git package/luci-app-netspeedtest
+git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/lucky
 # iStore官方
 git clone --depth=1 -b main https://github.com/linkease/istore.git package/istore
 git clone --depth=1 -b master https://github.com/linkease/nas-packages.git package/nas-packages
@@ -84,13 +85,13 @@ mv package/small-package/adguardhome feeds/packages/net/adguardhome
 mv package/small-package/luci-app-easymesh package/luci-app-easymesh
 mv package/small-package/luci-app-easytier package/luci-app-easytier
 mv package/small-package/luci-app-gecoosac package/luci-app-gecoosac
-mv package/small-package/luci-app-smartdns package/luci-app-tailscale
-mv package/small-package/smartdns feeds/packages/net/tailscale
+#mv package/small-package/luci-app-smartdns package/luci-app-tailscale
+#mv package/small-package/smartdns feeds/packages/net/tailscale
 mv package/small-package/luci-app-ikoolproxy package/luci-app-ikoolproxy
 mv package/small-package/wrtbwmon package/wrtbwmon
 mv package/small-package/luci-app-wrtbwmon package/luci-app-wrtbwmon
-mv package/small-package/lucky package/lucky
-mv package/small-package/luci-app-lucky package/luci-app-lucky
+# mv package/small-package/lucky package/lucky
+# mv package/small-package/luci-app-lucky package/luci-app-lucky
 
 rm -rf package/small-package
 
@@ -103,6 +104,9 @@ rm -rf package/imm24pkg
 #git clone --depth 1 -b openwrt-24.10 https://github.com/immortalwrt/luci package/imm24luci
 #mv package/imm24luci/applications/luci-app-frpc package/luci-app-frpc
 #rm -rf package/imm24luci
+
+rm -rf package/ddns-go
+git clone --depth 1 https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
 
 #git clone --depth 1 https://github.com/coolsnowwolf/lede.git package/lede
 #mv package/lede/package/lean/luci-app-leigod-acc package/luci-app-leigod-acc
