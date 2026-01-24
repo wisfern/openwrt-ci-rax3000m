@@ -1,5 +1,5 @@
-sed -i 's/192.168.6.1/10.3.2.1/g' package/base-files/files/bin/config_generate
-sed -i "s/192\.168\.[0-9]*\.[0-9]*/10.3.2.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+sed -i 's/192.168.6.1/192.168.55.1/g' package/base-files/files/bin/config_generate
+sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.55.1/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
 mv $GITHUB_WORKSPACE/patch/padavanonly/199-diy.sh package/base-files/files/etc/uci-defaults/zz-diy.sh
 mv $GITHUB_WORKSPACE/patch/padavanonly/mtwifi.sh package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
 
@@ -29,25 +29,32 @@ sed -i "s/%C/\/ Complied on $(date +"%Y.%m.%d")/g" package/base-files/files/usr/
 sed -i "s/%C/\/ Complied on $(date +"%Y.%m.%d")/g" package/base-files/files/etc/openwrt_release
 # mv $GITHUB_WORKSPACE/patch/padavanonly/10_system.js feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
-if grep -q "openclash=y" "$GITHUB_WORKSPACE/$CONFIG_FILE"; then
-    echo "✅ 已选择 luci-app-openclash，添加 openclash core"
-    mkdir -p files/etc/openclash/core
-    # Download clash_meta
-    META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
-    wget -qO- $META_URL | tar xOvz > files/etc/openclash/core/clash_meta
-    chmod +x files/etc/openclash/core/clash_meta
-    # 下载 GeoIP 和 GeoSite
-    # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat -O files/etc/openclash/GeoIP.dat
-    # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat -O files/etc/openclash/GeoSite.dat
-else
-    echo "⚪️ 未选择 luci-app-openclash"
-fi
+# 以下添加clash实例，没必要
+# if grep -q "openclash=y" "$GITHUB_WORKSPACE/$CONFIG_FILE"; then
+#     echo "✅ 已选择 luci-app-openclash，添加 openclash core"
+#     mkdir -p files/etc/openclash/core
+#     # Download clash_meta
+#     META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-arm64.tar.gz"
+#     wget -qO- $META_URL | tar xOvz > files/etc/openclash/core/clash_meta
+#     chmod +x files/etc/openclash/core/clash_meta
+#     # 下载 GeoIP 和 GeoSite
+#     # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat -O files/etc/openclash/GeoIP.dat
+#     # wget -q https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat -O files/etc/openclash/GeoSite.dat
+# else
+#     echo "⚪️ 未选择 luci-app-openclash"
+# fi
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 git clone --depth 1 https://github.com/vernesong/OpenClash.git package/OpenClash
 git clone --depth 1 https://github.com/nikkinikki-org/OpenWrt-nikki.git package/OpenWrt-nikki
 git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall.git package/passwall
 git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall2.git package/passwall2
+
+git clone --depth 1 https://github.com/sbwml/luci-app-openlist2 package/openlist
+git clone --depth 1 https://github.com/wisfern/OpenAppFilter.git package/oaf
+#git clone --depth 1 https://github.com/sirpdboy/luci-app-netspeedtest.git package/luci-app-netspeedtest
+git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/lucky
+
 rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-openclash}
 rm -rf feeds/packages/net/{mosdns,v2ray-geodata}
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns

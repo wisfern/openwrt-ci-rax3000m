@@ -65,7 +65,6 @@ git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall.git pac
 git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall2.git package/luci-app-passwall2
 
 git clone --depth 1 https://github.com/sbwml/luci-app-openlist2 package/openlist
-#git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/luci-app-lucky
 git clone --depth 1 https://github.com/wisfern/OpenAppFilter.git package/oaf
 #git clone --depth 1 https://github.com/sirpdboy/luci-app-netspeedtest.git package/luci-app-netspeedtest
 git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/lucky
@@ -85,9 +84,9 @@ mv package/small-package/adguardhome feeds/packages/net/adguardhome
 mv package/small-package/luci-app-easymesh package/luci-app-easymesh
 mv package/small-package/luci-app-easytier package/luci-app-easytier
 mv package/small-package/luci-app-gecoosac package/luci-app-gecoosac
-#mv package/small-package/luci-app-smartdns package/luci-app-tailscale
-#mv package/small-package/smartdns feeds/packages/net/tailscale
 mv package/small-package/luci-app-ikoolproxy package/luci-app-ikoolproxy
+#mv package/small-package/tailscale package/tailscale
+mv package/small-package/luci-app-tailscale package/luci-app-tailscale
 mv package/small-package/wrtbwmon package/wrtbwmon
 mv package/small-package/luci-app-wrtbwmon package/luci-app-wrtbwmon
 # mv package/small-package/lucky package/lucky
