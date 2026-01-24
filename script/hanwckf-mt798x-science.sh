@@ -66,7 +66,7 @@ git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall2.git pa
 
 git clone --depth 1 https://github.com/sbwml/luci-app-openlist2 package/openlist
 #git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/luci-app-lucky
-git clone --depth 1 https://github.com/destan19/OpenAppFilter.git package/oaf
+git clone --depth 1 https://github.com/wisfern/OpenAppFilter.git package/oaf
 #git clone --depth 1 https://github.com/sirpdboy/luci-app-netspeedtest.git package/luci-app-netspeedtest
 git clone --depth 1 https://github.com/gdy666/luci-app-lucky.git package/lucky
 # iStore官方
