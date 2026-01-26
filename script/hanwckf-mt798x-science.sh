@@ -79,8 +79,8 @@ rm -rf package/nas-packages/network
 rm -rf feeds/packages/net/{adguardhome,smartdns,tailscale}
 rm -rf feeds/luci/applications/{luci-app-alist,luci-app-smartdns}
 git clone --depth 1 https://github.com/kenzok8/small-package.git package/small-package
-#mv package/small-package/luci-app-adguardhome package/luci-app-adguardhome
-#mv package/small-package/adguardhome feeds/packages/net/adguardhome
+mv package/small-package/luci-app-adguardhome package/luci-app-adguardhome
+mv package/small-package/adguardhome feeds/packages/net/adguardhome
 mv package/small-package/luci-app-easymesh package/luci-app-easymesh
 mv package/small-package/luci-app-easytier package/luci-app-easytier
 mv package/small-package/luci-app-gecoosac package/luci-app-gecoosac
